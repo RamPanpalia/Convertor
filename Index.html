@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertor</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+.head{
+    padding: 20px 0px;
+    color: white;
+    letter-spacing: 1px;
+    background-color: rgb(117, 117, 255);
+}
+.main{
+    padding: 20px 0;
+    margin: 20px 0;
+    font-size: 30px;
+    background-color: aqua;
+    border: 4px solid black;
+}
+.main-roman{
+    padding-top: 20px;
+}
+.numberInput{
+    height: 30px;
+    width: 180px;
+}
+input{
+    font-size: 20px;
+}
+.output{
+    height: 30px;
+    width: 180px;
+}
+
+</style>
+<body>
+    <div class="head">
+        <p>Convertor</p>
+    </div>
+    <div class="main">
+        <div class="main-integer">
+            <label for="">Integer</label>
+            <input class="numberInput" type="number">
+        </div>
+        <div class="main-roman">
+            <label for="">Roman Figure</label>
+            <input class="output"></input>
+        </div>
+    </div>
+
+    <!-- <div class="main">
+        <div class="main-integer">
+            <label for="">Decimal</label>
+            <input class="numberInput" type="number">
+        </div>
+        <div class="main-roman">
+            <label for="">Hexadecimal</label>
+            <input class="output"></input>
+        </div>
+    </div> -->
+
+</body>
+
+<script>
+
+function intToRoman(num) {
+        var romanNumber="";
+        while(num>=1000){
+                romanNumber+="M";
+                num=num-1000;
+        }
+        while(num>=500){
+            if(num>=900){
+                romanNumber+="CM";
+                num-=900;
+            }
+            else{
+            romanNumber+="D";
+            num-=500;
+            }
+        }
+        while(num>=100){
+            if(num>=400){
+                romanNumber+="CD";
+                num-=400;
+            }
+            else{
+                romanNumber+="C";
+                num-=100;
+            }
+        }
+        while(num>=50){
+            if(num>=90){
+                romanNumber+="XC";
+                num-=90;
+            }
+            else{
+            romanNumber+="L";
+            num-=50;
+            }
+        }
+        while(num>=10){
+            if(num>=40){
+                romanNumber+="XL";
+                num-=40;
+            }
+            else{
+                romanNumber+="X";
+                num-=10;
+            }
+        }
+        while(num>=5){
+            if(num>=9){
+                romanNumber+="IX";
+                num-=9;
+            }
+            else{
+            romanNumber+="V";
+            num-=5;
+            }
+        }
+        while(num>=1){
+            if(num>=4){
+                romanNumber+="IV";
+                num-=4;
+            }
+            else{
+                romanNumber+="I";
+                num-=1;
+            }
+        }
+        return romanNumber;
+    };
+
+    function valid(a){
+        if(a<0 || a>3999){
+            return false;
+        }
+        return true;
+    }
+
+
+    document.querySelector('.numberInput').addEventListener("change",function(){
+        let a=document.querySelector('.numberInput').value;
+        if(valid(a)!=true){
+            document.querySelector('.numberInput').value="";
+            alert("Please enter a proper value(greater than 0 and less than 3999)");
+        }
+        else{
+            document.querySelector('.output').value=intToRoman(a);
+        }
+    });
+
+
+</script>
+
+</html>
